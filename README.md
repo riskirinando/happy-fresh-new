@@ -4,7 +4,7 @@ Node.js REST API service endpoint that calculates body mass index (BMI) and its 
 
 This project also includes the followings:
 - Docker
-  - `Dockerfile` use to build docker container image of the application (docker image available from https://hub.docker.com/r/ibnuzamra/bmi-calculator)
+  - `Dockerfile` use to build docker container image of the application (docker image available from https://hub.docker.com/repository/docker/riskirinando/calculator-bmi)
 - Jenkins CI/CD pipeline
   - `Jenkinsfile` that use for defines the CI/CD pipeline using Jenkins
 - Kubernetes
@@ -29,7 +29,7 @@ The BMI calculator application assumes the followings:
 ### Access the BMI calculator (online)
 ```
 # Calculate BMI for weight (70 kg) and height (167 cm)
-curl "http://bmi.konservatif.xyz/?height=167&weight=70"
+curl "http://bmi.rinando.my.id/?height=174&weight=70"
 
 # Output
 {"success":true,"bmi":25.1,"label":"overweight"}
@@ -37,26 +37,24 @@ curl "http://bmi.konservatif.xyz/?height=167&weight=70"
 
 ### Run on Docker
 ```
-docker run -d -p 3000:3000 --name bmi-calculator ibnuzamra/bmi-calculator:latest
+docker run -d -p 3000:3000 --name bmi-calculator riskirinando/bmi-calculator:latest
 curl "http://localhost:3000/?height=167&weight=70"
 ```
 
 ### Run on Kubernetes
 ```
 # Create the resources
-kubectl apply -f https://raw.githubusercontent.com/ibnuzamra/bmi-calculator/main/k8s/bmi-calculator/1-bmi-calculator-cm.yaml
-kubectl apply -f https://raw.githubusercontent.com/ibnuzamra/bmi-calculator/main/k8s/bmi-calculator/2-bmi-calculator-deployment.yaml
-kubectl apply -f https://raw.githubusercontent.com/ibnuzamra/bmi-calculator/main/k8s/bmi-calculator/3-bmi-calculator-svc.yaml
+kubectl apply -f https://raw.githubusercontent.com/riskirinando/happy-fresh-new/main/k8s/bmi-calculator/calculator-bmi.yaml
 
 # Access the service
-curl "http://bmi.konservatif.xyz/?height=167&weight=70"
+curl "http://bmi.rinando.my.id/?height=174&weight=70"
 ```
 
 ### Access Monitoring and Logging
 ```
 #Monitoring
-http://grafana.konservatif.xyz/
+http://grafana.rinando.my.id/
 
 #Logging
-http://kibana.konservatif.xyz/
+http://kibana.rinando.my.id/
 ```
